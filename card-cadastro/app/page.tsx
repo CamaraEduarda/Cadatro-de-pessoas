@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 p-8 flex justify-center items-start">
       <UserCard
-        nome="João da Silva"
+        nome="Fulano Melo da Silva"
         cpf="123.456.789-00"
         contato="(11) 98765-4321"
         cidade="São Paulo"
-        avatar="https://placehold.co/128x128?text=Avatar+Joao+da+Silva"
+        avatar="https://img.freepik.com/fotos-gratis/jovem-barbudo-com-camisa-listrada_273609-5677.jpg?semt=ais_hybrid&w=740"
         status="inativa"
         onEdit={handleEdit}
         onViewMore={handleViewMore}
