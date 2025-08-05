@@ -1,7 +1,7 @@
-"use client";
-
+'use client';
+import  UserCard  from "@/packages/lib-ui/UserCard";
 import React from "react";
-import UserCard from "../packages/lib-ui/UserCard";
+
 
 export default function Home() {
   const handleEdit = () => {

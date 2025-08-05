@@ -25,9 +25,9 @@ const UserCard: React.FC<UserCardProps> = ({
   onViewMore,
 }) => {
   const statusBorderClasses = {
-    ativa: "border-green-600",
-    inativa: "border-red-700",
-    em_fila: "border-gray-400",
+    inativa: "border-2 border-red-700",
+    ativa: "",
+    em_fila: "",
   };
 
   const statusTextClasses = {
@@ -36,12 +36,12 @@ const UserCard: React.FC<UserCardProps> = ({
     em_fila: "text-gray-400",
   };
 
-  const cardClassNames = `shadow-md border-2 rounded-lg p-4 sm:p-6 flex flex-col gap-4 relative ${statusBorderClasses[status]}`;
+  const cardClassNames = `shadow-md rounded-lg p-4 sm:p-6 flex flex-col gap-4 relative ${statusBorderClasses[status]}`;
   const cardTextColor = "#0D4F97";
 
   return (
     <div
-      className={`w-full max-w-lg mx-auto bg-white rounded-lg p-6 flex flex-col gap-4 relative ${cardClassNames}`}
+      className={`w-full max-w-md mx-auto bg-white rounded-lg p-6 flex flex-col gap-2 relative  ${cardClassNames}`}
       style={{ fontFamily: "'Baloo 2', cursive", color: cardTextColor }}
     >
       {/*Botão editar*/}
@@ -55,16 +55,16 @@ const UserCard: React.FC<UserCardProps> = ({
       </button>
 
       {/*Conteúdo do card*/}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:gap-8 ">
         {/*Avatar + status*/}
-        <div className="flex flex-col items-center sm:items-start sm:w-1/4">
+        <div className="flex flex-col items-center justify-center sm:items-center sm:justify-center sm:w-1/4">
           <img
             src={avatar}
             alt={nome}
-            className="w-20 h-20 rounded-lg object-cover shadow"
+            className="w-28 h-28 rounded-lg object-cover shadow"
           />
           <span
-            className={`mt-2 text-sm font-medium ${statusTextClasses[status]}`}
+            className={`mt-2 text-base sm:text-lg font-medium ${statusTextClasses[status]}`}
           >
             {status === "ativa" && "Ativo"}
             {status === "inativa" && "Inativo"}
@@ -73,7 +73,7 @@ const UserCard: React.FC<UserCardProps> = ({
         </div>
 
         {/* Informações do usuário */}
-        <div className="mt-4 sm:mt-0 sm:w-3/4 flex flex-col gap-1 text-sm sm:text-base">
+        <div className="mt-6 sm:mt-0 sm:w-3/4 flex flex-col gap-1 text-sm sm:text-base">
           <h2 className="text-xl font-bold">{nome}</h2>
           <p className="pl-1">CPF: {cpf}</p>
           <p className="pl-1">Contato: {contato}</p>
@@ -85,7 +85,7 @@ const UserCard: React.FC<UserCardProps> = ({
       <div className="flex justify-end">
         <button
           onClick={onViewMore}
-          className="px-5 py-1 rounded text-white text-sm shadow"
+          className="px-4 py-2 rounded text-white text-base sm:text-lg font-semibold shadow"
           style={{ backgroundColor: cardTextColor }}
         >
           Ver mais
