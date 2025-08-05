@@ -1,0 +1,154 @@
+import React from 'react';
+import styled from 'styled-components';
+
+interface PessoaCardProps {
+  nome: string;
+  cpf: string;
+  contato: string;
+  cidade: string;
+  status: 'Ativo' | 'Inativo' | 'Em fila';
+  imagem?: string;
+}
+
+const borderColors = {
+  Ativo: '#1E7F33',
+  Inativo: '#B00020',
+  'Em fila': '#F9A825',
+};
+
+const Card = styled.div<{ status: PessoaCardProps['status'] }>`
+  border: 2px solid ${({ status }) => borderColors[status]};
+  border-radius: 16px;
+  background-color: white;
+  padding: 16px;
+  margin: 16px auto;
+  font-family: 'Baloo 2', cursive;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+`;
+
+const ProfileImage = styled.img`
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  margin-right: 16px;
+
+  @media (max-width: 480px) {
+    margin: 0 0 12px 0;
+  }
+`;
+
+const Info = styled.div`
+  flex: 1;
+  min-width: 200px;
+
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+`;
+
+const Nome = styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  color: #00448C;
+`;
+
+const Line = styled.div`
+  font-size: 16px;
+  color: #333;
+`;
+
+const StatusText = styled.div<{ status: PessoaCardProps['status'] }>`
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 16px;
+  color: ${({ status }) => borderColors[status]};
+`;
+
+const EditIcon = styled.div`
+  font-size: 20px;
+  color: #00448C;
+  cursor: pointer;
+
+  @media (max-width: 480px) {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+`;
+
+const EditWrapper = styled.div`
+  margin-left: auto;
+  position: relative;
+`;
+
+const ButtonWrapper = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: 480px) {
+    justify-content: center;
+  }
+`;
+
+const VerMaisButton = styled.button`
+  background-color: #00448C;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #003372;
+  }
+`;
+
+export const PessoaCard: React.FC<PessoaCardProps> = ({
+  nome,
+  cpf,
+  contato,
+  cidade,
+  status,
+  imagem
+}) => {
+  return (
+    <Card status={status}>
+      <Header>
+        <ProfileImage src={imagem || 'https://via.placeholder.com/80'} alt="Foto" />
+        <Info>
+          <Nome>{nome}</Nome>
+          <Line>CPF: {cpf}</Line>
+          <Line>Contato: {contato}</Line>
+          <Line>Cidade: {cidade}</Line>
+          <StatusText status={status}>{status}</StatusText>
+        </Info>
+        <EditWrapper>
+          <EditIcon title="Editar">✏️</EditIcon>
+        </EditWrapper>
+      </Header>
+      <ButtonWrapper>
+        <VerMaisButton>Ver mais</VerMaisButton>
+      </ButtonWrapper>
+    </Card>
+  );
+};
