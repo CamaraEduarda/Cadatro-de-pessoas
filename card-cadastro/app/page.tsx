@@ -1,7 +1,7 @@
 'use client';
-import  UserCard  from "@/packages/lib-ui/UserCard";
+import UserCard from "@/packages/lib-ui/UserCard";
+import DocumentCategoriesCard from "@/packages/lib-ui/DocumentCategoriesCard";
 import React from "react";
-
 
 export default function Home() {
   const handleEdit = () => {
@@ -10,8 +10,13 @@ export default function Home() {
   const handleViewMore = () => {
     alert("Ver mais clicado");
   };
+  
+  const handleCategoriaClick = (tipo: string) => {
+    alert(`Você clicou na categoria: ${tipo}`);
+  };
+
   return (
-    <main className="min-h-screen bg-gray-50 p-8 flex justify-center items-start">
+    <main className="min-h-screen bg-gray-50 p-8 flex flex-col items-center gap-8">
       <UserCard
         nome="Fulano Melo da Silva"
         cpf="123.456.789-00"
@@ -22,6 +27,9 @@ export default function Home() {
         onEdit={handleEdit}
         onViewMore={handleViewMore}
       />
+
+      {/* Aqui você renderiza o DocumentCategoriesCard */}
+      <DocumentCategoriesCard onClickCategoria={handleCategoriaClick} />
     </main>
   );
 }
